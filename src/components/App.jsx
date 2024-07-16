@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Notiflix, { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { ContactForm } from './ContactForm/ContactForm';
 
 
 export class App extends Component {
@@ -57,6 +58,7 @@ export class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
+        <ContactForm addContact={this.addContact} contacts={contacts}/>
       </div>
     )
   }

@@ -1,0 +1,15 @@
+.divFilter {
+    margin-bottom: 20px;
+    padding: 20px 0;
+}
+
+.divFilter p {
+    text-align: center;
+    margin: 0 auto 10px;
+}
+
+input[type='text'],
+input[type='tel'] {
+    width: 90%;
+    padding: 10px
+}
