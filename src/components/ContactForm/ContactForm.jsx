@@ -74,8 +74,38 @@ export class ContactForm extends Component {
         const { name, number } = this.state;
 
         return (
-            <form className={}
-        )
+            <form className={css.form} onSubmit={this.handleSubmit}>
+                <label className={css.formField}>
+                    <p className={css.formLabel}>Name</p>
+                    <input
+                        type="text"
+                        name="name"
+                        pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                        required
+                        value={number}
+                        onChange={this.handleNumberChange}
+                    />
+                </label>
+
+                <label className={css.formField}>
+                    <p className={css.formLabel}>Number</p>
+                    <input
+                        type="tel"
+                        name="number"
+                        pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                        required
+                        value={number}
+                        onChange={this.handleNumberChange}
+                    />
+                </label>
+
+                <button className={css.btnSubmit} type="submit">
+                    Add Contact
+                </button>
+            </form>
+        );
     }
 
 }
