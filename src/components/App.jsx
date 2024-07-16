@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Notiflix, { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
 
 
 export class App extends Component {
@@ -20,7 +22,7 @@ export class App extends Component {
 
     if (!savedContacts) {
       return;
-    } else if (savedContacts.lenght > 0) {
+    } else if (savedContacts.length > 0) {
       this.setState({ contacts: JSON.parse(savedContacts) });
     }
   } componentDidUpdate(prevProps, prevState) {
@@ -53,15 +55,36 @@ export class App extends Component {
     }));
   };
 
+  setFilter = filterValue => {
+    this.setState({
+      filter: filterValue,
+    });
+  };
+
+  filterContact = () => {
+    const { contacts, filter } = this.state;
+    const filterLowerCase = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterLowerCase)
+    );
+  };
+
   render() {
     const { contacts, filter } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm addContact={this.addContact} contacts={contacts}/>
+        <ContactForm addContact={this.addContact} contacts={contacts} />
+        
+        <h2>Contacts</h2>
+        <Filter filter={filter} setFilter={this.setFilter} />
+        <ContactList
+          filterContact={this.filterContact}
+          deleteContact={this.deleteContact}
+          contacts={contacts}
+        />
       </div>
-    )
+    );
   }
-
 }
 
